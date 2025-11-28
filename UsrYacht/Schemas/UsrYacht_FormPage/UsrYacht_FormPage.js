@@ -121,6 +121,29 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 			},
 			{
 				"operation": "insert",
+				"name": "TicketPrice",
+				"values": {
+					"layoutConfig": {
+						"column": 1,
+						"row": 4,
+						"colSpan": 1,
+						"rowSpan": 1
+					},
+					"type": "crt.NumberInput",
+					"label": "$Resources.Strings.PDS_UsrTicketPrice_7zbbodh",
+					"labelPosition": "auto",
+					"control": "$PDS_UsrTicketPrice_7zbbodh",
+					"visible": false,
+					"readonly": true,
+					"placeholder": "",
+					"tooltip": ""
+				},
+				"parentName": "SideAreaProfileContainer",
+				"propertyName": "items",
+				"index": 3
+			},
+			{
+				"operation": "insert",
 				"name": "DriveType",
 				"values": {
 					"layoutConfig": {
@@ -240,7 +263,7 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 			},
 			{
 				"operation": "insert",
-				"name": "Comment",
+				"name": "EmailInput_t0e3723",
 				"values": {
 					"layoutConfig": {
 						"column": 2,
@@ -248,11 +271,16 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 						"colSpan": 1,
 						"rowSpan": 1
 					},
-					"type": "crt.Input",
-					"label": "$Resources.Strings.PDS_UsrComment_iswb579",
-					"labelPosition": "auto",
-					"control": "$PDS_UsrComment_iswb579",
-					"multiline": false
+					"type": "crt.EmailInput",
+					"label": "#ResourceString(EmailInput_t0e3723_label)#",
+					"control": "$PDS_UsrManagerEmail_4h7imjq",
+					"labelPosition": "left",
+					"placeholder": "",
+					"tooltip": "",
+					"needHandleSave": false,
+					"caption": "#ResourceString(EmailInput_t0e3723_caption)#",
+					"readonly": true,
+					"visible": true
 				},
 				"parentName": "GeneralInfoTabContainer",
 				"propertyName": "items",
@@ -287,6 +315,26 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 			},
 			{
 				"operation": "insert",
+				"name": "Comment",
+				"values": {
+					"layoutConfig": {
+						"column": 2,
+						"row": 4,
+						"colSpan": 1,
+						"rowSpan": 1
+					},
+					"type": "crt.Input",
+					"label": "$Resources.Strings.PDS_UsrComment_iswb579",
+					"labelPosition": "auto",
+					"control": "$PDS_UsrComment_iswb579",
+					"multiline": false
+				},
+				"parentName": "GeneralInfoTabContainer",
+				"propertyName": "items",
+				"index": 7
+			},
+			{
+				"operation": "insert",
 				"name": "City",
 				"values": {
 					"layoutConfig": {
@@ -310,7 +358,31 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 				},
 				"parentName": "GeneralInfoTabContainer",
 				"propertyName": "items",
-				"index": 7
+				"index": 8
+			},
+			{
+				"operation": "insert",
+				"name": "Input_k53w1gl",
+				"values": {
+					"layoutConfig": {
+						"column": 2,
+						"row": 5,
+						"colSpan": 1,
+						"rowSpan": 1
+					},
+					"type": "crt.Input",
+					"label": "#ResourceString(Input_k53w1gl_label)#",
+					"control": "",
+					"placeholder": "",
+					"tooltip": "",
+					"readonly": false,
+					"multiline": false,
+					"labelPosition": "auto",
+					"visible": true
+				},
+				"parentName": "GeneralInfoTabContainer",
+				"propertyName": "items",
+				"index": 9
 			}
 		]/**SCHEMA_VIEW_CONFIG_DIFF*/,
 		viewModelConfigDiff: /**SCHEMA_VIEW_MODEL_CONFIG_DIFF*/[
@@ -379,6 +451,16 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 						"modelConfig": {
 							"path": "PDS.UsrCity"
 						}
+					},
+					"PDS_UsrTicketPrice_7zbbodh": {
+						"modelConfig": {
+							"path": "PDS.UsrTicketPrice"
+						}
+					},
+					"PDS_UsrManagerEmail_4h7imjq": {
+						"modelConfig": {
+							"path": "PDS.UsrManagerEmail_4h7imjq"
+						}
 					}
 				}
 			},
@@ -411,7 +493,13 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 					"PDS": {
 						"type": "crt.EntityDataSource",
 						"config": {
-							"entitySchemaName": "UsrYacht"
+							"entitySchemaName": "UsrYacht",
+							"attributes": {
+								"UsrManagerEmail_4h7imjq": {
+									"path": "UsrManager.Email",
+									"type": "ForwardReference"
+								}
+							}
 						},
 						"scope": "page"
 					}
@@ -436,6 +524,36 @@ define("UsrYacht_FormPage", /**SCHEMA_DEPS*/[]/**SCHEMA_DEPS*/, function/**SCHEM
 					console.log("Price = " + price);
 
 					request.$context.PDS_UsrComment_iswb579 = "comment from JS code!";
+
+					/* Call the next handler if it exists and return its result. */
+
+					return next?.handle(request);
+
+				}
+
+			},
+
+			{
+
+				request: "crt.HandleViewModelAttributeChangeRequest",
+
+				/* The custom implementation of the system query handler. */
+
+				handler: async (request, next) => {
+
+      				if (request.attributeName === 'PDS_UsrPrice_uk34eo2' || 		        // if price changed
+
+					   request.attributeName === 'PDS_UsrPassengersCount_91vccyh' ) { 		// or Passengers count changed
+
+						let price = await request.$context.PDS_UsrPrice_uk34eo2;
+
+						let passengers = await request.$context.PDS_UsrPassengersCount_91vccyh;
+
+						let ticket_price = price / passengers;
+
+						request.$context.PDS_UsrTicketPrice_7zbbodh = ticket_price;
+
+					}
 
 					/* Call the next handler if it exists and return its result. */
 
