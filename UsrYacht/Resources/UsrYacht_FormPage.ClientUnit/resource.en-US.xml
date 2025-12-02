@@ -8,9 +8,22 @@
 			<Item Name="LocalizableStrings.addRecord_fm2bob4_caption.Value" Value="Add new" />
 			<Item Name="LocalizableStrings.addRecord_hbakljf_caption.Value" Value="Add new" />
 			<Item Name="LocalizableStrings.addRecord_zey6ds7_caption.Value" Value="Add new" />
+			<Item Name="LocalizableStrings.Button_0wmpzj1_caption.Value" Value="Actions" />
+			<Item Name="LocalizableStrings.CrewCountCannotBeLess.Value" Value="Crew count cannot be less than 1." />
 			<Item Name="LocalizableStrings.EmailInput_t0e3723_caption.Value" Value="Email address" />
 			<Item Name="LocalizableStrings.EmailInput_t0e3723_label.Value" Value="Manager email" />
-			<Item Name="LocalizableStrings.Input_k53w1gl_label.Value" Value="Regular iput" />
+			<Item Name="LocalizableStrings.ExpansionPanel_dwilrwy_title.Value" Value="Yacht rental" />
+			<Item Name="LocalizableStrings.GridDetailAddBtn_oam84o6_caption.Value" Value="New" />
+			<Item Name="LocalizableStrings.GridDetailExportDataBtn_29agb1b_caption.Value" Value="Export to Excel" />
+			<Item Name="LocalizableStrings.GridDetailImportDataBtn_80w0g1w_caption.Value" Value="Data import" />
+			<Item Name="LocalizableStrings.GridDetailRefreshBtn_dha2c11_caption.Value" Value="Refresh" />
+			<Item Name="LocalizableStrings.GridDetailSearchFilter_w4fm5pq_placeholder.Value" Value="Search" />
+			<Item Name="LocalizableStrings.GridDetailSettingsBtn_dc5ygym_caption.Value" Value="Actions" />
+			<Item Name="LocalizableStrings.Input_k53w1gl_label.Value" Value="Regular input" />
+			<Item Name="LocalizableStrings.MenuItem_vsna80b_caption.Value" Value="Start run avg ticket price process" />
+			<Item Name="LocalizableStrings.MultiSelectCategory_label.Value" Value="Multi-select" />
+			<Item Name="LocalizableStrings.PaasengersCountCannotBeLess.Value" Value="Passengers count cannot be less than 1" />
+			<Item Name="LocalizableStrings.PriceCannotBeLess.Value" Value="Price cannot be less than 50 USD" />
 			<Item Name="LocalizableStrings.PushMeButton_caption.Value" Value="Push me!" />
 		</Items>
 	</Group>
